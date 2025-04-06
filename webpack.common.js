@@ -1,13 +1,20 @@
 const path = require("path");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
     main: "./src/index.js",
     vendor: "./src/vendor.js"
   },
+  resolve: {
+    extensions: ['.ts', '.js'], // 👈 allows imports without extensions
+  },
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.html$/,
         use: ["html-loader"]

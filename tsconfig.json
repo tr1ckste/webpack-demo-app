@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "strict": true,
+    "allowJs": true,         // 👈 allows using .js files too
+    "checkJs": false,
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"]
+}
