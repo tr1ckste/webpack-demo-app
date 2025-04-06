@@ -3,6 +3,7 @@ const common = require("./webpack.common");
 const { merge } = require("webpack-merge");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -22,8 +23,12 @@ module.exports = merge(common, {
           collapseWhitespace: true,
           removeComments: true
         }
-      })
-    ]
+      }),
+      new CssMinimizerPlugin(),
+    ],
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: "[name].[hash].css" }),

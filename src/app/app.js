@@ -1,6 +1,7 @@
 import { inputsAreValid } from "./utils/inputs-are-valid";
 import { parseInputs } from "./utils/parse-inputs";
 import { adder } from "./utils/math";
+import multiplyArr from "./utils/multiplyArr";
 
 export const run = (alertService, componentService) => {
   alertService.hideErrors();
@@ -17,4 +18,8 @@ export const run = (alertService, componentService) => {
       alertService.handleAdditionError(inputs, parsedInputs);
     }
   });
+
+  componentService.onClickMultiply(() => {
+    multiplyArr()
+  })
 };

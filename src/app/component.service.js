@@ -3,6 +3,8 @@ export class ComponentService {
     this.numberOneInput = document.getElementById("numberOne");
     this.numberTwoInput = document.getElementById("numberTwo");
     this.addValuesButton = document.getElementById("addValues");
+    this.multiplyArrayButton = document.getElementById("multiplyArray");
+
     this.resultDiv = document.getElementById("result");
   }
 
@@ -16,5 +18,9 @@ export class ComponentService {
 
   onClick(cb) {
     this.addValuesButton.addEventListener("click", cb);
+  }
+
+  onClickMultiply(cb) {
+    this.multiplyArrayButton.addEventListener("click", cb);
   }
 }
