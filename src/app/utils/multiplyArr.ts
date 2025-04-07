@@ -1,5 +1,5 @@
-import { multiplyArray } from "./common";
+import { memoizedMultiplyArray } from "./common";
 
 export default () => {
-  console.log(multiplyArray([ 1, 2, 3 ], 3));
+  console.log(memoizedMultiplyArray([ 1, 2, 3 ], 3));
 }
