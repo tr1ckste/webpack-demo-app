@@ -1,7 +1,7 @@
 module.exports = {
   entry: {
     main: "./src/index.js",
-    vendor: "./src/vendor.js"
+    // vendor: "./src/vendor.js"
   },
   resolve: {
     extensions: ['.ts', '.js'], // 👈 allows imports without extensions

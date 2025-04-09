@@ -1,4 +1,5 @@
 const path = require("path");
+const glob = require("glob");
 const common = require("./webpack.common");
 const zlib = require("zlib");
 const { merge } = require("webpack-merge");
@@ -8,11 +9,15 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
+const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
+const PATHS = {
+  src: path.join(__dirname, "src"),
+};
 
 module.exports = merge(common, {
   mode: "production",
   output: {
-    filename: "[name].[hash].bundle.js",
+    filename: "[name].[fullhash].bundle.js",
     path: path.resolve(__dirname, "dist")
   },
   optimization: {
@@ -47,7 +52,11 @@ module.exports = merge(common, {
       deleteOriginalAssets: false,
     }),
     new CompressionPlugin(),
-    new MiniCssExtractPlugin({ filename: "[name].[hash].css" }),
+    new MiniCssExtractPlugin({ filename: "[name].[fullhash].css" }),
+    new PurgeCSSPlugin({
+      paths: glob.sync('./src/**/*.html', { nodir: true }),
+      safelist: ['invisible']
+    }),
     new CleanWebpackPlugin()
   ],
   module: {
@@ -55,8 +64,10 @@ module.exports = merge(common, {
       {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader, //3. Extract css into files
-          "css-loader", //2. Turns css into commonjs
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+          },
           {
             loader: 'sass-loader',
             options: {
