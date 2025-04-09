@@ -1,3 +1,7 @@
 $primary: teal;
 $danger: purple;
 @use "~bootstrap/scss/bootstrap";
+
+body {
+  display: flex;
+}

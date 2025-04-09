@@ -1,13 +1,31 @@
 module.exports = {
   entry: {
-    main: "./src/index.js",
-    // vendor: "./src/vendor.js"
+    main: "./src/index.js"
   },
   resolve: {
     extensions: ['.ts', '.js'], // 👈 allows imports without extensions
   },
   module: {
     rules: [
+      // {
+      //   test: /\.(scss|css)$/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: "postcss-loader",
+      //     options: {
+      //       postcssOptions: {
+      //         plugins: [
+      //           [
+      //             "postcss-preset-env",
+      //             {
+      //               browsers: 'last 2 versions',
+      //             },
+      //           ],
+      //         ],
+      //       },
+      //     },
+      //   }
+      // },
       {
         test: /\.(?:js|mjs|cjs)$/,
         exclude: /node_modules/,
