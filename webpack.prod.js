@@ -10,12 +10,6 @@ const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
-const PostCssPresetEnv = require('postcss-preset-env')
-const PATHS = {
-  src: path.join(__dirname, "src"),
-};
-
-// browserslist: ['defaults and chrome >= 56']
 
 module.exports = merge(common, {
   mode: "production",

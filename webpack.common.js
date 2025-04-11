@@ -7,25 +7,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.(scss|css)$/,
-      //   exclude: /node_modules/,
-      //   use: {
-      //     loader: "postcss-loader",
-      //     options: {
-      //       postcssOptions: {
-      //         plugins: [
-      //           [
-      //             "postcss-preset-env",
-      //             {
-      //               browsers: 'last 2 versions',
-      //             },
-      //           ],
-      //         ],
-      //       },
-      //     },
-      //   }
-      // },
       {
         test: /\.(?:js|mjs|cjs)$/,
         exclude: /node_modules/,
@@ -46,7 +27,23 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        use: 'ts-loader',
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              targets: "defaults",
+              presets: [["@babel/env", {
+                targets: {
+                  browsers: ['> 0.2% and not dead'], // for configuring see browserlist docs
+                },
+                modules: false, // should leave it for tree shaking work (leaves es6 modules)
+                useBuiltIns: "usage",
+                corejs: "3.41",
+              }]]
+            }
+          },
+          'ts-loader'
+        ],
         exclude: /node_modules/,
       },
       {
