@@ -44,7 +44,6 @@ module.exports = merge(common, {
           [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
         },
       },
-      threshold: 10240,
       minRatio: 0.8,
       deleteOriginalAssets: false,
     }),
@@ -73,7 +72,7 @@ module.exports = merge(common, {
                   [
                     "postcss-preset-env",
                     {
-                      browsers: 'last 2 versions',
+                      browsers: '> 0.2% and not dead',
                     },
                   ],
                 ],
